@@ -27,9 +27,12 @@ cmd="curl --silent --user ${apiuser}:${apipass} --request GET ${apiurl}JSSResour
 hostinfo=$( ${cmd} )
 
 # Now parse the data and get the usernames
+# Start by removing all the XML before the VMWare Serial EA
 
 serial=${hostinfo##*VMWare Serial\<\/name\><type>String</type><value>}
-serial=${adminusers%%\<\/value\>*}
+
+# Now remove everything after it. That should just leave us the serial number we require.
+serial=${serial%%\<\/value\>*}
 
 # Everything hopefully checks out. Run the serialiser.
 
