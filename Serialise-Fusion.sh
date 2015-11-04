@@ -35,10 +35,9 @@ serial=${hostinfo##*VMWare Serial\<\/name\><type>String</type><value>}
 serial=${serial%%\<\/value\>*}
 
 # Set up license key file for VMWare Fusion
-echo ${SERIAL} > /Applications/VMware\ Fusion.app/Contents/Library/License\ Key.txt
+echo $serial > /Applications/VMware\ Fusion.app/Contents/Library/License\ Key.txt
 
 # Everything hopefully checks out. Run the serialiser.
-
 /Applications/VMware\ Fusion.app/Contents/Library/Initialize\ VMware\ Fusion.tool set "" "" ${serial}
 
 # Finished!
